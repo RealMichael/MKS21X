@@ -27,7 +27,8 @@ public class OrderedSuperArray extends SuperArray{
   public boolean add(String value){
     //add to the correct spot.
     //you may still use super.add(index,value)
-	super.add(findIndex(value),value);
+      
+      	super.add(findIndex(value),value);
     return true;
   }
 private int findIndex(String ba){
@@ -36,7 +37,7 @@ private int findIndex(String ba){
 			return i;
 		}
 	}
-		return 0;
+	return 0;
 	}
 
 private int findIndexBinary(String ya){
