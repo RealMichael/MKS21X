@@ -33,27 +33,20 @@ public class SuperArray {
 
     public boolean add(String element){
 	//	int tracker = 0;
-	    if(size() == data.length){
+	   if(size() == data.length){
 		resize();
 	    }
-	    String[] data2 = new String[data.length];
-	    for(int i = 0;i < size(); i ++){
-		data2[i] = data[i];
-		//	tracker = i;
-	    }
-	    data2[size()] = element;
-	    //  tracker = 0;
-	    data = data2;
-	size++;
+	   data[size] = element;
+	   size++;
 
-	return true;
+	   return true;
     }
     public String toString(){
 	String result = "[";
-	for(int i = 0;i < data.length; i++){
+	for(int i = 0;i < size(); i++){
 	    result += data[i];
-	    if (i != data.length - 1){
-		result += ",";
+	    if (i != size() - 1){
+		result +=    "," + " ";
 	    }
 	}
 	    return result += "]";
@@ -75,9 +68,9 @@ public class SuperArray {
 	return ele;
     }
     private void resize(){
-	int oriSize = size;
+	int oriSize = size();
 	size = size * 2 + 1;
-	String[] data3 = new String[size];
+	String[] data3 = new String[oriSize * 2 + 1];
 	for(int i = 0; i < oriSize; i++){
 	    data3[i]  = data[i];
 	}
@@ -117,7 +110,7 @@ public class SuperArray {
 	    if(index > size()   || index < 0){
 		throw new IndexOutOfBoundsException();
 	    }
-	    if(data.length  == size()){
+	    if(data.length   == size()){
 		resize();
 		    }
 	    
