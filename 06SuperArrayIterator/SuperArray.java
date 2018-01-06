@@ -1,20 +1,20 @@
 import java.util.Iterator;
 
 public class SuperArray implements Iterable<String>{
+
+
     private String[] data;
     private int size;
     
    
 
     public SuperArray(){
-	size = 0;
 	data = new String[10];
        
 
     }
 	public SuperArray(int startingCapacity){
-	    size = 0;
-		data = new String[startingCapacity];
+	   data = new String[startingCapacity];
 	}
 
     public void clear(){
@@ -31,61 +31,55 @@ public class SuperArray implements Iterable<String>{
 	return size == 0;
     }
 
-    public boolean add(String element){
-	int tracker = 0;
-	    if(size() == data.length){
+      public boolean add(String element){
+	//	int tracker = 0;
+	   if(size() == data.length){
 		resize();
 	    }
-	    String[] data2 = new String[data.length + 1];
-	    for(int i = 0;i < data.length; i ++){
-		data2[i] = data[i];
-		//	tracker = i;
-	    }
-	    data2[size()] = element;
-	    //  tracker = 0;
-	    data = data2;
-	size++;
+	   data[size] = element;
+	   size++;
 
-	return true;
+	   return true;
     }
-    public String toString(){
-	String result = "[";
-	for(int i = 0;i < data.length; i++){
-	    result += data[i];
-	    if (i != data.length - 1){
-		result += ",";
-	    }
+    
+
+  
+ public String toString(){
+	String ans = "[";
+	for (int x = 0; x < size() - 1; x++){
+	    ans = ans + data[x] + ", ";
 	}
-	    return result += "]";
+	ans = ans + data[size() - 1] + "]";
+	return ans;
     }
 
 
     public String get(int Index){
 	if(Index >= data.length || Index < 0){
-	    return "Error";
+	    	throw new IndexOutOfBoundsException();
 	}
 	return data[Index];
     }
     public String set(int Index,String element){
 	if(Index >= data.length || Index < 0){
-	    return "Error";
+	    	throw new IndexOutOfBoundsException();
 	}
 	String ele = data[Index];
 	data[Index] = element;
 	return ele;
     }
-    private void resize(){
-	int oriSize = size;
-	size = size * 2 + 1;
-	String[] data3 = new String[size];
-	for(int i = 0; i < oriSize; i++){
+      private void resize(){
+	int oriSize = size();
+	int x  = size() * 2 + 1;
+	String[] data3 = new String[x];
+	for(int i = 0; i < data.length; i++){
 	    data3[i]  = data[i];
 	}
 	
 	data = data3;
     }
-
-
+    
+  
 
     public boolean contains(String element){
 	for(int i = 0;i < data.length; i ++){
@@ -113,28 +107,29 @@ public class SuperArray implements Iterable<String>{
 	    return -1;
 	}
 
-	public void add(int index,String element){
+   
+public void add(int index,String element){
 	    if(index > size()   || index < 0){
 		throw new IndexOutOfBoundsException();
 	    }
-	    if(data.length  == size()){
+	    if(data.length   == size()){
 		resize();
 		    }
-	    else{
+	    
 	    String[] data4 = new String[data.length];
-	    data4[index] = element;
+	    //  data4[index] = element;
 	    for(int i = 0; i < index  ; i ++){
 		data4[i] = data[i];
 	    }
+	  
 	    data4[index] = element;
-	    for(int i = index; i < size() ; i ++){
-		data4[i] = data[i + 1];
+	    for(int i = index + 1; i < data.length ; i ++){
+		data4[i] = data[i - 1];
 	    }
 	    size ++;
 	    data = data4;
-	    }
 	}
-	public String remove(int index){
+      	public String remove(int index){
 	    String ele3 = data[index];
 	    String [] data5 = new String[data.length];
 	    for(int i = 0; i < index; i ++){
@@ -169,9 +164,11 @@ public class SuperArray implements Iterable<String>{
 		return false;
 	    }
 
+	
+	
 	}
-	public Iterator<String> iterator(){
+    public Iterator<String> iterator(){
 	    return new SuperArrayIterator(this,0);
-	}
+    }
 
 }

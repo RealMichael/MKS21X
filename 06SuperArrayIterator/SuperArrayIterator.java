@@ -9,13 +9,13 @@ public class SuperArrayIterator implements Iterator<String>{
     {
 	    this.sa = sa;
 	    this.currentIndex = currentIndex;
-	    this.endIndex = this.sa.size() -1;
+	    this.endIndex = this.sa.size()  ;
      }
 
 
     public boolean hasNext()
     {
-	return (currentIndex + 1)  <= endIndex ;
+	return (currentIndex )  <= endIndex - 1  ;
     }
 
     public String next()
@@ -28,7 +28,7 @@ public class SuperArrayIterator implements Iterator<String>{
 	else{
 	    System.exit(0);
     }
- return sa.get(currentIndex);
+ return sa.get(currentIndex - 1);
     }
 
     public void remove(){
