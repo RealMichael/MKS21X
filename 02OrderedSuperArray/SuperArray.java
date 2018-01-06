@@ -7,14 +7,12 @@ public class SuperArray {
    
 
     public SuperArray(){
-	size = 0;
 	data = new String[10];
        
 
     }
 	public SuperArray(int startingCapacity){
-	    size = 0;
-		data = new String[startingCapacity];
+	   data = new String[startingCapacity];
 	}
 
     public void clear(){
@@ -31,7 +29,7 @@ public class SuperArray {
 	return size == 0;
     }
 
-    public boolean add(String element){
+      public boolean add(String element){
 	//	int tracker = 0;
 	   if(size() == data.length){
 		resize();
@@ -41,15 +39,16 @@ public class SuperArray {
 
 	   return true;
     }
-    public String toString(){
-	String result = "[";
-	for(int i = 0;i < size(); i++){
-	    result += data[i];
-	    if (i != size() - 1){
-		result +=    "," + " ";
-	    }
+    
+
+  
+ public String toString(){
+	String ans = "[";
+	for (int x = 0; x < size() - 1; x++){
+	    ans = ans + data[x] + ", ";
 	}
-	    return result += "]";
+	ans = ans + data[size() - 1] + "]";
+	return ans;
     }
 
 
@@ -67,18 +66,18 @@ public class SuperArray {
 	data[Index] = element;
 	return ele;
     }
-    private void resize(){
+      private void resize(){
 	int oriSize = size();
-	size = size * 2 + 1;
-	String[] data3 = new String[oriSize * 2 + 1];
-	for(int i = 0; i < oriSize; i++){
+	int x  = size() * 2 + 1;
+	String[] data3 = new String[x];
+	for(int i = 0; i < data.length; i++){
 	    data3[i]  = data[i];
 	}
 	
 	data = data3;
     }
-
-
+    
+  
 
     public boolean contains(String element){
 	for(int i = 0;i < data.length; i ++){
@@ -106,7 +105,8 @@ public class SuperArray {
 	    return -1;
 	}
 
-	public void add(int index,String element){
+   
+public void add(int index,String element){
 	    if(index > size()   || index < 0){
 		throw new IndexOutOfBoundsException();
 	    }
@@ -127,8 +127,7 @@ public class SuperArray {
 	    size ++;
 	    data = data4;
 	}
-	
-	public String remove(int index){
+      	public String remove(int index){
 	    String ele3 = data[index];
 	    String [] data5 = new String[data.length];
 	    for(int i = 0; i < index; i ++){
@@ -166,5 +165,6 @@ public class SuperArray {
 	
 	
 	}
+    
 
 }
